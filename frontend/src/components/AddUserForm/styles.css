@@ -1,0 +1,25 @@
+.add-user-form {
+  padding: 10px 80px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-user-form * {
+  padding: 5px;
+}
+
+.add-user-form-error {
+  background-color: #ff96ab;
+}
+
+.add-user-form-name {}
+
+.add-user-form-email {}
+
+.add-user-form-phone {}
+
+.add-user-form-photo {
+  padding: 5px 0;
+}
