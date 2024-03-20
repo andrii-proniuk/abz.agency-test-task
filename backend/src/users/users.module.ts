@@ -10,7 +10,6 @@ import { UsersRepositoryModule } from '../repositories/users/users-repository.mo
 import { ImagesModule } from '../images/images.module';
 import { TokensRepositoryModule } from '../repositories/tokens/tokens-repository.module';
 import { PositionsRepositoryModule } from '../repositories/positions/positions-repository.module';
-import { NestjsFormDataModule } from 'nestjs-form-data';
 import * as multer from 'multer';
 import { MAX_USER_PHOTO_SIZE } from './users.constants';
 import { ValidationFailedException } from '../common/exceptions/validation-failed.exception';
@@ -41,7 +40,6 @@ const upload = multer({
     PositionsRepositoryModule,
     ImagesModule,
     TokensRepositoryModule,
-    NestjsFormDataModule,
   ],
   controllers: [UsersController],
   providers: [UsersService],
@@ -51,7 +49,6 @@ export class UsersModule implements NestModule {
     consumer
       .apply((req, res, next) => {
         const customNext = (error?: any) => {
-          console.log({ file: req.file, timestamp: new Date().toISOString() });
           if (!error) {
             return next();
           }

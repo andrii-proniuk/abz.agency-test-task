@@ -1,7 +1,8 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
+import { BaseSuccessResponseDto } from '../../common/response-dto/base-success.response-dto';
 
 @Exclude()
-export class CreateUserResponseDto {
+export class CreateUserResponseDto extends BaseSuccessResponseDto {
   @Expose()
   user_id: number;
 

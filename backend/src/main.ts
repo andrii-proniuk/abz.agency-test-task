@@ -15,20 +15,6 @@ async function bootstrap() {
 
   app.enableCors();
 
-  app.use(
-    (
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction,
-    ) => {
-      console.log({
-        path: req.path,
-      });
-
-      next();
-    },
-  );
-
   app.use('/public', express.static(join(process.cwd(), 'public')));
 
   app.useGlobalPipes(

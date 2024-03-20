@@ -20,24 +20,9 @@ function UsersForm() {
   const profileModalRef = useRef<HTMLDialogElement>(null);
 
   const openProfileModal = (userId: number) => {
-    console.log(profileModalRef);
-
-    // if (!profileModalRef.current) {
-    //   return;
-    // }
-    
     profileModalRef.current?.showModal();
     setUserId(userId);
   }
-
-  // const closeProfileModal = () => {
-  //   if (!profileModalRef.current) {
-  //     return;
-  //   }
-
-  //   profileModalRef.current.close();
-  //   setUserId(undefined);
-  // }
 
   useEffect(() => {
     const controller = new AbortController();
@@ -56,7 +41,6 @@ function UsersForm() {
   }, [currentLink]);
 
   const getContent = () => {
-    console.log(formData)
     if (formData?.loading) {
       return <p>Loading positions...</p>;
     }
@@ -83,9 +67,6 @@ function UsersForm() {
                   <div className='users-list-item-info'>
                     <p className='users-list-item-name'>{ name }</p>
                     <p className='users-list-item-email'>{ email }</p>
-                    {/* <div className="users-list-item-contacts">
-                      { [email, phone].map((contact, index) => <p key={index}>{ contact }</p>) }
-                    </div> */}
                   </div>
                 </li>
               )

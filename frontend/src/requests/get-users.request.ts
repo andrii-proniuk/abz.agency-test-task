@@ -6,8 +6,6 @@ export const getUsersRequest = async (link: string | null): Promise<GetUsersResp
 
   const body = await response.json();
 
-  console.log({ body });
-
   if (response.status !== 200) {
     throw new Error(body?.message || 'Error while fetching users');
   }

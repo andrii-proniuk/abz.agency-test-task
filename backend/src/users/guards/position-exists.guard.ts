@@ -11,8 +11,6 @@ export class PositionExistsGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest();
 
-    console.log({ body: req.body });
-
     const { position_id } = req.body as CreateUserDto;
 
     if (!position_id) {

@@ -18,13 +18,6 @@ export class TokenService {
     this.aesConfig = configService.get<AesConfig>('aes');
   }
 
-  // private generateMac(encryptedValue: string): string {
-  //   const hmac = crypto.createHmac('sha256', this.aesConfig.key);
-  //   hmac.update(encryptedValue);
-
-  //   return hmac.digest('hex');
-  // }
-
   private async generateTokenValue(): Promise<string> {
     const expiresIn = Date.now() + this.aesConfig.expiration;
 
@@ -37,15 +30,6 @@ export class TokenService {
 
     return JSON.stringify(value);
   }
-
-  // private encryptValue(plainValue: string, iv: Buffer): string {
-  //   const cipher = crypto.createCipheriv('aes-256-cbc', this.aesConfig.key, iv);
-
-  //   let encryptedValue = cipher.update(plainValue, 'utf8', 'base64');
-  //   encryptedValue += cipher.final('base64');
-
-  //   return encryptedValue;
-  // }
 
   async generateToken(): Promise<GenerateTokenResponseDto> {
     const iv = crypto.randomBytes(16);

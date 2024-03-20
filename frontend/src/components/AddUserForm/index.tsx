@@ -68,8 +68,6 @@ function AddUserForm() {
   const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.item(0);
 
-    console.log({ file });
-
     if (file?.size && file.size > USER_PHOTO_MAX_SIZE) {
       alert('Photo too large, max size - 5MB');
 

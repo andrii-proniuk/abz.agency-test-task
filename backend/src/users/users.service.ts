@@ -36,7 +36,9 @@ export class UsersService {
       photo: photoUrl,
     });
 
-    return plainToInstance(CreateUserResponseDto, user);
+    return plainToInstance(CreateUserResponseDto, {
+      user_id: user.id,
+    });
   }
 
   private createGetUsersLink(urlSearchParams: URLSearchParams): string {
@@ -72,8 +74,6 @@ export class UsersService {
   }
 
   async getUsers(getUsersDto: GetUsersDto): Promise<GetUsersResponseDto> {
-    console.log({ getUsersDto });
-
     const { items: users, count } =
       await this.usersRepositoryService.getUsers(getUsersDto);
 
