@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import FormSwitcher, { IFormInfo } from './components/FormSwitcher';
 import UsersForm from './components/UsersForm';
 import PositionsForm from './components/PositionsForm';
+import AddUserForm from './components/AddUserForm';
+import SeederButton from './components/SeederButton';
 
 import './App.css';
-import AddUserForm from './components/AddUserForm';
 
 enum FormKeyEnum {
   Users = 'users',
@@ -46,6 +47,7 @@ function App() {
   return (
     <div className="App">
       <div className="forms-wrap">
+        <SeederButton />
         <FormSwitcher forms={ forms } currentForm={ currentForm } setCurrentForm={ setCurrentForm } />
         <div className="form">
           { getCurrentForm() }

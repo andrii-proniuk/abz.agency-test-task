@@ -1,6 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
 import { User } from '../../repositories/entities/user.entity';
-import { DefaultSuccessResponseDto } from '../../common/response-dto/default-success.response-dto';
+import { BaseSuccessResponseDto } from '../../common/response-dto/base-success.response-dto';
 
 @Exclude()
 class Links {
@@ -12,7 +12,7 @@ class Links {
 }
 
 @Exclude()
-export class GetUsersResponseDto extends DefaultSuccessResponseDto {
+export class GetUsersResponseDto extends BaseSuccessResponseDto {
   @Expose()
   page: number;
 

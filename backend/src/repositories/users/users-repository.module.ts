@@ -7,6 +7,7 @@ import { User } from '../entities/user.entity';
 import { GetUserByIdUseCase } from './use-cases/get-user-by-id.usecase';
 import { UserExistsUseCase } from './use-cases/user-exists.usecase';
 import { CreateUsersUseCase } from './use-cases/create-users.usecase';
+import { GetUsersCountUseCase } from './use-cases/get-users-count.usecase';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
@@ -17,6 +18,7 @@ import { CreateUsersUseCase } from './use-cases/create-users.usecase';
     GetUsersUseCase,
     GetUserByIdUseCase,
     UserExistsUseCase,
+    GetUsersCountUseCase,
   ],
   exports: [UsersRepositoryService],
 })

@@ -1,7 +1,7 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
 
 @Exclude()
-export class DefaultSuccessResponseDto {
+export class BaseSuccessResponseDto {
   @Expose()
   @Transform(({ value }) => value || true)
   success: boolean;

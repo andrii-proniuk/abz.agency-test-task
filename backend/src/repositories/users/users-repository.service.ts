@@ -9,6 +9,7 @@ import { IItemsAndCount } from '../../common/interfaces/items-and-count.interfac
 import { GetUserByIdUseCase } from './use-cases/get-user-by-id.usecase';
 import { UserExistsUseCase } from './use-cases/user-exists.usecase';
 import { CreateUsersUseCase } from './use-cases/create-users.usecase';
+import { GetUsersCountUseCase } from './use-cases/get-users-count.usecase';
 
 @Injectable()
 export class UsersRepositoryService {
@@ -18,6 +19,7 @@ export class UsersRepositoryService {
     private getUsersUseCase: GetUsersUseCase,
     private getUserByIdUseCase: GetUserByIdUseCase,
     private userExistsUseCase: UserExistsUseCase,
+    private getUsersCountUseCase: GetUsersCountUseCase,
   ) {}
 
   async create(
@@ -67,5 +69,9 @@ export class UsersRepositoryService {
     transactionManager?: EntityManager,
   ): Promise<boolean> {
     return this.userExistsUseCase.exec({ phone }, transactionManager);
+  }
+
+  async getCount(transactionManager?: EntityManager): Promise<number> {
+    return this.getUsersCountUseCase.exec(transactionManager);
   }
 }

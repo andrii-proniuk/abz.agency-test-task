@@ -5,7 +5,7 @@ export const SEEDER_POSITIONS_NAMES = [
   'Lawyer',
 ];
 
-export const SEEDER_USERS_COUNT = 5;
+export const SEEDER_USERS_COUNT = 45;
 
 export const SEEDER_PHONE_OPERATOR_CODES = [
   '50',

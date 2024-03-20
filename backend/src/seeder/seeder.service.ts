@@ -12,6 +12,7 @@ import { ImagesService } from '../images/images.service';
 import { faker } from '@faker-js/faker';
 import { TransactionService } from '../core/postgres/transaction.service';
 import { EntityManager } from 'typeorm';
+import { BaseSuccessResponseDto } from '../common/response-dto/base-success.response-dto';
 
 @Injectable()
 export class SeederService {
@@ -22,7 +23,7 @@ export class SeederService {
     private transactionService: TransactionService,
   ) {}
 
-  private async createPositions(
+  private async getPositions(
     transactionManager: EntityManager,
   ): Promise<Position[]> {
     const positions = await this.positionsRepositoryService.getAll();
@@ -85,9 +86,18 @@ export class SeederService {
     };
   }
 
-  async runSeeder(): Promise<any> {
+  async runSeeder(): Promise<BaseSuccessResponseDto> {
     await this.transactionService.transaction(async (transactionManager) => {
-      const positions = await this.createPositions(transactionManager);
+      const usersCount =
+        await this.usersRepositoryService.getCount(transactionManager);
+
+      if (usersCount >= SEEDER_USERS_COUNT) {
+        return;
+      }
+
+      const usersCountToCreate = SEEDER_USERS_COUNT - usersCount;
+
+      const positions = await this.getPositions(transactionManager);
 
       const positionIds = positions.map(({ id }) => id);
 
@@ -98,7 +108,7 @@ export class SeederService {
       const usersData: ICreateUserData[] = [];
 
       // don't use Promise.all because thispersondoesnotexist.com sends the same image for multiple requests
-      for (let i = 0; i < SEEDER_USERS_COUNT; i++) {
+      for (let i = 0; i < usersCountToCreate; i++) {
         const positionId = getRandomPosition();
 
         const userData = await this.composeUser(positionId);
@@ -112,8 +122,6 @@ export class SeederService {
       );
     });
 
-    return {
-      success: true,
-    };
+    return new BaseSuccessResponseDto();
   }
 }
